@@ -13,45 +13,25 @@
 import random
 
 
-def play(dice):
-    position = 0
-    check_play = random.randint(0, 2)
-    if check_play == 1:
-        position = position
-    elif check_play == 2:
-        position += dice
-    else:
-        position -= dice
-    print(f'current position {position}')
+def play(position):
+    while position <= 100:
+        dice = random.randint(1, 6)
+        while position < 100:
+            play_condition = random.randint(0, 2)
+            match play_condition:
+                case 0:
+                    position += 0
+                    print(f'Player stays at the position ')
+                case 1:
+                    position += dice
+                    print(f'Player moves {dice} position ahead and is at {position} position')
+                case 2:
+                    if position != 0:
+                        position -= dice
+                        print(f'Player moves {dice} position backward is at {position} position')
 
-
-def dice_throw():
-    """
-            Description: dice_throw function to generate number between 0 and 6.
-
-            Parameter: None
-
-            Return: Numbers between
-
-    """
-
-    dice = random.randint(1, 6)
-    play(dice)
-    return dice
-
-
-def snake_ladder():
-    """
-            Description: Snake ladder problem.
-
-            Parameter: None
-
-            Return: Zero
-
-    """
-    return 0
 
 
 if __name__ == "__main__":
-    print(f'Starting position is {snake_ladder()}')
-    print(f'Dice throw Number {dice_throw()}')
+    start_position = 0
+    play(start_position)
