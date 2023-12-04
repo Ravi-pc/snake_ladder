@@ -40,7 +40,6 @@ def play(position):
             else:
                 print(f'Player moves {dice} position ahead.')
                 print(f'Player Wins!!!!!')
-                break
         else:
             if position >= 0 and position >= dice:
                 position -= dice
@@ -48,7 +47,7 @@ def play(position):
                 if position <= 0:
                     print(f'Sorry!! You need to restart.')
                     position = 0
-        print(f'Player is at {position} position.')
+        print(f'Player is at {position} position after move {count}.')
     print(f'Player wins after {count} dice roll.')
 
 if __name__ == "__main__":
