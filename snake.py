@@ -14,7 +14,17 @@ import random
 
 
 def play(position):
+    """
+        Description: Play function to execute different cases of snake ladder problem.
+
+         Parameter: start_position
+
+        Return: Nothing
+
+    """
+    count = 0
     while position < 100:
+        count += 1
         dice = random.randint(1, 6)
         play_condition = random.randint(0, 2)
         if play_condition == 0:
@@ -30,6 +40,7 @@ def play(position):
             else:
                 print(f'Player moves {dice} position ahead.')
                 print(f'Player Wins!!!!!')
+                break
         else:
             if position >= 0 and position >= dice:
                 position -= dice
@@ -38,6 +49,7 @@ def play(position):
                     print(f'Sorry!! You need to restart.')
                     position = 0
         print(f'Player is at {position} position.')
+    print(f'Player wins after {count} dice roll.')
 
 if __name__ == "__main__":
     start_position = 0
