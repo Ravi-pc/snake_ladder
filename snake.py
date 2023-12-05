@@ -13,7 +13,59 @@
 import random
 
 
-def play(position):
+def player():
+    """
+            Description: Player function for the snake ladder problem to lay between two players.
+
+             Parameter: start_position
+
+            Return: Nothing
+
+    """
+    player1_pos = 0
+    player2_pos = 0
+    player_no = 1
+    while player1_pos < 100 and player2_pos < 100:
+        match player_no:
+            case 1:
+                dice = play()
+                if dice > 0:
+                    if player1_pos + dice > 100:
+                        pass
+                    else:
+                        player1_pos += dice
+                        player_no = 1
+                        continue
+                else:
+                    player1_pos += dice
+                    if player1_pos < 0:
+                        player1_pos = 0
+                    player_no = 2
+                print(f"Player 1 is at position: {player2_pos}")
+
+            case 2:
+                dice = play()
+                if dice > 0:
+                    if player2_pos + dice > 100:
+                        pass
+                    else:
+                        player2_pos += dice
+                        player_no = 2
+                        continue
+                else:
+                    player2_pos += dice
+                    if player2_pos < 0:
+                        player2_pos = 0
+                    player_no = 1
+                print(f"Player 2 is at position: {player2_pos}")
+
+    if player1_pos == 100:
+        print(f"Player 1 is win!! at position {player1_pos}\n")
+    else:
+        print(f"Player 2 is win!! at position {player2_pos}\n")
+
+
+def play():
     """
         Description: Play function to execute different cases of snake ladder problem.
 
@@ -22,34 +74,19 @@ def play(position):
         Return: Nothing
 
     """
-    count = 0
-    while position < 100:
-        count += 1
-        dice = random.randint(1, 6)
-        play_condition = random.randint(0, 2)
-        if play_condition == 0:
-            position += 0
-            print(f'Player stays at the same position.')
-        elif play_condition == 1:
-            position += dice
-            if position < 100:
-                print(f'Player moves {dice} position ahead.')
-            elif position > 100:
-                print(f'Extra numbers player cannot move move. ')
-                position -= dice
-            else:
-                print(f'Player moves {dice} position ahead.')
-                print(f'Player Wins!!!!!')
-        else:
-            if position >= 0 and position >= dice:
-                position -= dice
-                print(f'Player moves {dice} position backward.')
-                if position <= 0:
-                    print(f'Sorry!! You need to restart.')
-                    position = 0
-        print(f'Player is at {position} position after move {count}.')
-    print(f'Player wins after {count} dice roll.')
+    dice = random.randint(1, 6)
+    play_condition = random.randint(0, 2)
+    if play_condition == 0:
+        print(f'Player stays at the same position.')
+        return 0
+    elif play_condition == 1:
+        print(f'Player gets the ladder.')
+        return dice
+    else:
+        print(f'Player gets the snake.')
+        return -dice
+
 
 if __name__ == "__main__":
     start_position = 0
-    play(start_position)
+    player()
